@@ -146,7 +146,7 @@ export const EXPERIENCES: Experience[] = [
     startYear: "2021",
     endYear: "2022",
     description:
-      "Delivered 4 production Next.js applications with SSR and PWA capabilities, achieving sub-2s mobile load times. Built a Storybook component library of 35+ reusable components adopted across 3 projects, reducing UI development time by 38%.",
+      "Overhauled a React codebase scoring under 50 on Lighthouse, applying performance optimization, code-splitting, and rendering fixes to push scores to 92+. Led architecture migration to a headless ecommerce stack with Gatsby.js, delivering sub-second page loads. Established a shared Storybook component library, eliminating duplicate UI across 3 teams and cutting design-to-code handoff from days to hours.",
     current: false,
   },
   {
