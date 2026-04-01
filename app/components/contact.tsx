@@ -44,18 +44,6 @@ export function Contact() {
               />
             </div>
             <div>
-              <label htmlFor="phone" className="sr-only">
-                Phone Number
-              </label>
-              <input
-                id="phone"
-                name="phone"
-                type="tel"
-                placeholder="Phone Number"
-                className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:border-accent focus:outline-none"
-              />
-            </div>
-            <div>
               <label htmlFor="service" className="sr-only">
                 Service Of Interest
               </label>
@@ -72,22 +60,30 @@ export function Contact() {
                 <option value="fullstack">Full Stack Development</option>
                 <option value="ai-automation">AI Automation</option>
                 <option value="saas">SaaS Development</option>
+                <option value="mobile">Mobile Development</option>
                 <option value="consulting">Technical Consulting</option>
               </select>
             </div>
-          </div>
-
-          <div>
-            <label htmlFor="timeline" className="sr-only">
-              Timeline
-            </label>
-            <input
-              id="timeline"
-              name="timeline"
-              type="text"
-              placeholder="Timeline"
-              className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:border-accent focus:outline-none"
-            />
+            <div>
+              <label htmlFor="budget" className="sr-only">
+                Budget Range
+              </label>
+              <select
+                id="budget"
+                name="budget"
+                defaultValue=""
+                className="w-full appearance-none rounded-lg border border-border bg-bg-card px-4 py-3 text-sm text-text-muted transition-colors focus:border-accent focus:outline-none"
+              >
+                <option value="" disabled>
+                  Budget Range
+                </option>
+                <option value="under-1k">Under $1,000</option>
+                <option value="1k-5k">$1,000 – $5,000</option>
+                <option value="5k-15k">$5,000 – $15,000</option>
+                <option value="15k-plus">$15,000+</option>
+                <option value="discuss">Let&apos;s discuss</option>
+              </select>
+            </div>
           </div>
 
           <div>
@@ -99,7 +95,7 @@ export function Contact() {
               name="details"
               required
               rows={5}
-              placeholder="Project Details..."
+              placeholder="Tell me about your project..."
               className="w-full resize-none rounded-lg border border-border bg-bg-card px-4 py-3 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:border-accent focus:outline-none"
             />
           </div>
