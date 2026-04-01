@@ -13,22 +13,24 @@ type ImageLightboxProps = {
 export function ImageLightbox({ images, alt, children }: ImageLightboxProps) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
+  const [loaded, setLoaded] = useState(false);
   const hasMultiple = images.length > 1;
 
   const close = useCallback(() => {
     setOpen(false);
     setIndex(0);
+    setLoaded(false);
   }, []);
 
-  const prev = useCallback(
-    () => setIndex((i) => (i - 1 + images.length) % images.length),
-    [images.length]
-  );
+  const prev = useCallback(() => {
+    setLoaded(false);
+    setIndex((i) => (i - 1 + images.length) % images.length);
+  }, [images.length]);
 
-  const next = useCallback(
-    () => setIndex((i) => (i + 1) % images.length),
-    [images.length]
-  );
+  const next = useCallback(() => {
+    setLoaded(false);
+    setIndex((i) => (i + 1) % images.length);
+  }, [images.length]);
 
   useEffect(() => {
     if (!open) return;
@@ -104,19 +106,37 @@ export function ImageLightbox({ images, alt, children }: ImageLightboxProps) {
             </button>
           )}
 
-          {/* Image */}
+          {/* Image + Loading Skeleton */}
           <div
             className="relative max-h-[90vh] max-w-[90vw] animate-fade-up overflow-hidden rounded-xl"
             onClick={(e) => e.stopPropagation()}
           >
+            {/* Shimmer skeleton */}
+            {!loaded && (
+              <div className="flex h-[60vh] w-[80vw] max-w-[1200px] items-center justify-center rounded-xl bg-bg-card">
+                <div className="relative h-full w-full overflow-hidden rounded-xl">
+                  <div className="absolute inset-0 animate-pulse bg-gradient-to-r from-bg-card via-border/30 to-bg-card" />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                    <svg className="h-10 w-10 animate-spin text-accent/60" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M21 12a9 9 0 1 1-6.219-8.56" strokeLinecap="round" />
+                    </svg>
+                    <span className="text-sm text-text-muted">Loading preview...</span>
+                  </div>
+                </div>
+              </div>
+            )}
+
             <Image
               key={index}
               src={images[index]}
               alt={`${alt} — ${index + 1} of ${images.length}`}
               width={1200}
               height={800}
-              className="h-auto max-h-[85vh] w-auto rounded-xl object-contain"
+              className={`h-auto max-h-[85vh] w-auto rounded-xl object-contain transition-opacity duration-300 ${
+                loaded ? "opacity-100" : "opacity-0 absolute"
+              }`}
               priority
+              onLoad={() => setLoaded(true)}
             />
           </div>
 
@@ -128,6 +148,7 @@ export function ImageLightbox({ images, alt, children }: ImageLightboxProps) {
                   key={i}
                   onClick={(e) => {
                     e.stopPropagation();
+                    setLoaded(false);
                     setIndex(i);
                   }}
                   className={`h-2 rounded-full transition-all ${
