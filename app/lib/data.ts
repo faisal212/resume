@@ -137,7 +137,7 @@ export const EXPERIENCES: Experience[] = [
     startYear: "2022",
     endYear: "Present",
     description:
-      "Building a white-label B2B SaaS community platform for enterprise clients across Europe (TBO Clothing, Sonova, Thalia). Architecting the full Next.js frontend, multi-tenant infrastructure, gamified growth engine, AI-powered page builder, Visual Micro-Apps Automation Engine with Claude/OpenAI, and outbound AI call automation via Vapi + n8n. Reduced content production time by 87% and drove production incidents from 9/quarter to zero.",
+      "Built a white-label B2B SaaS community platform for enterprise clients across Europe (TBO Clothing, Sonova, Thalia). Architected the full Next.js frontend, multi-tenant infrastructure, gamified growth engine, AI-powered page builder, Visual Micro-Apps Automation Engine with Claude/OpenAI, and outbound AI call automation via Vapi + n8n. Reduced content production time by 87% and drove production incidents from 9/quarter to zero.",
     current: true,
   },
   {
