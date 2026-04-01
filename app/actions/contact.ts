@@ -4,7 +4,10 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-export async function submitContact(formData: FormData): Promise<void> {
+export async function submitContact(
+  _prevState: { success: boolean; message: string } | null,
+  formData: FormData
+): Promise<{ success: boolean; message: string }> {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
   const service = formData.get("service") as string;
@@ -12,23 +15,28 @@ export async function submitContact(formData: FormData): Promise<void> {
   const details = formData.get("details") as string;
 
   if (!name || !email || !details) {
-    return;
+    return { success: false, message: "Please fill in all required fields." };
   }
 
-  await resend.emails.send({
-    from: "Portfolio Contact <onboarding@resend.dev>",
-    to: "faisalaqdas@gmail.com",
-    replyTo: email,
-    subject: `New inquiry from ${name} — ${service || "General"}`,
-    html: `
-      <h2>New Portfolio Contact</h2>
-      <p><strong>Name:</strong> ${name}</p>
-      <p><strong>Email:</strong> ${email}</p>
-      <p><strong>Service:</strong> ${service || "Not specified"}</p>
-      <p><strong>Budget:</strong> ${budget || "Not specified"}</p>
-      <hr />
-      <p><strong>Project Details:</strong></p>
-      <p>${details.replace(/\n/g, "<br />")}</p>
-    `,
-  });
+  try {
+    await resend.emails.send({
+      from: "Portfolio Contact <onboarding@resend.dev>",
+      to: "faisalaqdas@gmail.com",
+      replyTo: email,
+      subject: `New inquiry from ${name} — ${service || "General"}`,
+      html: `
+        <h2>New Portfolio Contact</h2>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Service:</strong> ${service || "Not specified"}</p>
+        <p><strong>Budget:</strong> ${budget || "Not specified"}</p>
+        <hr />
+        <p><strong>Project Details:</strong></p>
+        <p>${details.replace(/\n/g, "<br />")}</p>
+      `,
+    });
+    return { success: true, message: "Message sent! I'll get back to you soon." };
+  } catch {
+    return { success: false, message: "Something went wrong. Please try again." };
+  }
 }

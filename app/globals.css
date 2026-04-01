@@ -93,6 +93,11 @@ body {
   animation: skill-fill 1.5s ease-out 0.5s both;
 }
 
+/* Interactive elements */
+a, button {
+  cursor: pointer;
+}
+
 /* Skip to content */
 .skip-to-content {
   position: absolute;
