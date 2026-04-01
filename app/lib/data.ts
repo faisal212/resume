@@ -49,9 +49,9 @@ export const PERSONAL_INFO = {
   firstName: "Faisal",
   title: "Full Stack & AI Automation Engineer",
   greeting: "Hi I am",
-  bio: "Full Stack & AI Automation Engineer with 8 years of production experience, including 4+ years building and scaling a white-label B2B SaaS platform to enterprise clients across Europe. I specialize in shipping AI-powered systems — Claude API, OpenAI, Vapi — that eliminate manual workflows at scale, with a proven track record of cutting content production time by 87%, scaling outreach to 600+ automated calls/month, and driving production incidents from 9/quarter to zero. I own entire product surfaces end-to-end, from React/Next.js frontends to GCP infrastructure, in fast-moving remote environments.",
+  bio: "Frontend-first Full Stack Engineer with 8 years of production experience crafting high-performance React and Next.js applications — from component libraries and design systems to full enterprise dashboards with SSR, PWA, and sub-2s load times. Beyond the frontend, I architect AI-powered automation systems using Claude API, OpenAI, Vapi, and n8n — building no-code workflow engines, AI call automation, and intelligent content pipelines that cut production time by 87% and scaled outreach to 600+ automated calls/month. I also own backend infrastructure end-to-end: Node.js APIs, multi-tenant architectures, PostgreSQL, Redis, BullMQ, and GCP deployments — driving production incidents from 9/quarter to zero across 4+ years of remote enterprise work.",
   aboutSubtitle:
-    "Building scalable full-stack applications and AI-powered automation systems.",
+    "Frontend expert. AI automation architect. Full stack when it matters.",
   email: "faisalaqdas@gmail.com",
   phone: "+92 348 404 6426",
   linkedin: "https://www.linkedin.com/in/faisalaqdas",
