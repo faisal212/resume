@@ -1,42 +1,72 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
+import { Providers } from "./components/providers";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
   subsets: ["latin"],
+  variable: "--font-inter",
+  weight: ["300", "400", "500", "600", "700", "800"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
+  variable: "--font-instrument-serif",
+  weight: "400",
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+  weight: ["300", "400", "500", "600"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Faisal Aqdas — Full Stack & AI Automation Engineer",
+  metadataBase: new URL('https://www.faisalaqdas.com'),
+  title: "Faisal Aqdas — Senior Frontend Engineer",
   description:
-    "Portfolio of Faisal Aqdas, a Full Stack & AI Automation Engineer with 8+ years of experience building scalable SaaS platforms, AI-powered systems, and modern React/Next.js applications.",
+    "Senior Frontend Engineer with 8 years shipping React & TypeScript to Mercedes-Benz, Sonova, Thalia, and TBO Clothing. Multi-tenant architecture, Core Web Vitals under 2s, LLM-embedded AI features.",
   keywords: [
-    "Full Stack Developer",
-    "AI Automation Engineer",
+    "Senior Frontend Engineer",
     "React",
     "Next.js",
-    "Node.js",
     "TypeScript",
-    "Portfolio",
+    "RTK Query",
+    "Core Web Vitals",
+    "AI automation",
+    "multi-tenant",
+    "design systems",
   ],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
-    title: "Faisal Aqdas — Full Stack & AI Automation Engineer",
+    title: "Faisal Aqdas — Senior Frontend Engineer",
     description:
-      "8+ years building scalable SaaS platforms and AI-powered automation systems.",
+      "8 years shipping React & TypeScript to enterprise clients. Multi-tenant architecture, Core Web Vitals under 2s.",
+    url: 'https://www.faisalaqdas.com',
+    siteName: 'Faisal Aqdas',
     type: "website",
     locale: "en_US",
+    images: [
+      {
+        url: '/assets/faisal-hero.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Faisal Aqdas — Senior Frontend Engineer',
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Faisal Aqdas — Full Stack & AI Automation Engineer",
+    title: "Faisal Aqdas — Senior Frontend Engineer",
     description:
-      "8+ years building scalable SaaS platforms and AI-powered automation systems.",
+      "8 years shipping React & TypeScript to enterprise clients. Multi-tenant architecture, Core Web Vitals under 2s.",
+    images: ['/assets/faisal-hero.jpg'],
   },
 };
 
@@ -48,13 +78,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth antialiased`}
+      className={`${inter.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-bg-primary font-sans text-text-primary">
-        <a href="#main-content" className="skip-to-content">
-          Skip to content
-        </a>
-        {children}
+      <body>
+        <Providers>
+          {children}
+        </Providers>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -62,23 +91,26 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Faisal Aqdas",
-              jobTitle: "Full Stack & AI Automation Engineer",
+              jobTitle: "Senior Frontend Engineer",
               email: "faisalaqdas@gmail.com",
-              url: "https://www.linkedin.com/in/faisalaqdas",
-              sameAs: ["https://www.linkedin.com/in/faisalaqdas"],
+              url: "https://www.faisalaqdas.com",
+              sameAs: [
+                "https://www.linkedin.com/in/faisalaqdas",
+                "https://github.com/faisal212",
+              ],
               knowsAbout: [
                 "React",
                 "Next.js",
-                "Node.js",
                 "TypeScript",
-                "AI Automation",
+                "RTK Query",
+                "Core Web Vitals",
+                "AI automation",
                 "Claude API",
                 "OpenAI",
-                "Vapi",
-                "n8n",
-                "GCP",
+                "NestJS",
                 "PostgreSQL",
                 "Redis",
+                "BullMQ",
               ],
             }),
           }}

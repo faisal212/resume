@@ -1,57 +1,45 @@
-import { EXPERIENCES } from "@/app/lib/data";
-import { SectionHeading } from "./section-heading";
+"use client";
 
-export function Experience() {
+import { useState } from 'react';
+import { ROLES } from '@/app/lib/data';
+
+export default function Experience() {
+  const [open, setOpen] = useState(0);
   return (
-    <section
-      id="experience"
-      aria-label="Work experience"
-      className="px-6 py-16 md:py-24"
-    >
-      <div className="mx-auto max-w-3xl">
-        <SectionHeading title="Experience" />
-
-        <div className="relative">
-          {/* Vertical line */}
-          <div
-            className="absolute left-[7px] top-2 bottom-2 w-px bg-border md:left-[9px]"
-            aria-hidden="true"
-          />
-
-          <div className="space-y-10">
-            {EXPERIENCES.map((exp, i) => (
-              <div key={i} className="relative pl-8 md:pl-10">
-                {/* Dot */}
-                <div
-                  className={`absolute left-0 top-2 h-[15px] w-[15px] rounded-full border-2 md:h-[19px] md:w-[19px] ${
-                    exp.current
-                      ? "border-accent bg-accent"
-                      : "border-text-muted bg-text-muted"
-                  }`}
-                  aria-hidden="true"
-                />
-
-                {/* Content */}
-                <div>
-                  <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="text-xl font-bold text-text-primary md:text-2xl">
-                      {exp.title}
-                    </h3>
-                    <span className="rounded-full border border-border px-3 py-0.5 text-xs font-medium text-text-secondary">
-                      {exp.startYear} &mdash; {exp.endYear}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-sm font-semibold text-accent">
-                    {exp.company}
-                  </p>
-                  <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-                    {exp.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+    <section className="section container reveal" id="experience">
+      <div className="sec-head">
+        <div>
+          <div className="sec-eyebrow"><span className="num">03 /</span> Career</div>
         </div>
+        <h2 className="sec-title">
+          8 years of <span className="serif-em">shipping</span> — and rewriting it better.
+        </h2>
+      </div>
+      <div className="timeline">
+        {ROLES.map((r, i) => (
+          <div
+            key={i}
+            className={`tl-item ${open === i ? 'active' : ''}`}
+            onClick={() => setOpen(open === i ? -1 : i)}
+          >
+            <div className="tl-head">
+              <div className="tl-role">
+                <span>{r.role}</span>
+                <span className="at"> at </span>
+                <span className="co">{r.company}</span>
+              </div>
+              <div className="tl-dates">{r.when}</div>
+            </div>
+            {open === i && (
+              <>
+                <p className="tl-desc">{r.body}</p>
+                <div className="tl-stack">
+                  {r.stack.map(s => <span className="chip" key={s}>{s}</span>)}
+                </div>
+              </>
+            )}
+          </div>
+        ))}
       </div>
     </section>
   );

@@ -1,82 +1,154 @@
-import Image from "next/image";
-import { PERSONAL_INFO, SOCIAL_LINKS, STATS } from "@/app/lib/data";
-import { SOCIAL_ICON_MAP } from "./icons";
-import { Button } from "./button";
-import { StatItem } from "./stat-item";
+"use client";
 
-export function Hero() {
+import { useState, useEffect } from 'react';
+import { IconArrow, IconDownload } from '@/app/lib/icons';
+
+interface CodePart { c: string; t: string }
+interface CodeLine { parts: CodePart[] }
+
+function TypingCode() {
+  const lines: CodeLine[] = [
+    { parts: [{ c: 'tok-c', t: '// decommerce — missions endpoint, RTK Query + typed tags' }] },
+    { parts: [
+      { c: 'tok-k', t: 'export const' }, { c: '', t: ' ' },
+      { c: 'tok-p', t: 'missionsApi' }, { c: '', t: ' = ' },
+      { c: 'tok-f', t: 'createApi' }, { c: 'tok-m', t: '({' },
+    ] },
+    { parts: [
+      { c: '', t: '  ' }, { c: 'tok-p', t: 'reducerPath' }, { c: '', t: ': ' },
+      { c: 'tok-s', t: '"missionsApi"' }, { c: '', t: ',' },
+    ] },
+    { parts: [
+      { c: '', t: '  ' }, { c: 'tok-p', t: 'baseQuery' }, { c: '', t: ': ' },
+      { c: 'tok-f', t: 'authedBaseQuery' }, { c: '', t: '(' },
+      { c: 'tok-s', t: '"/api"' }, { c: '', t: '),' },
+    ] },
+    { parts: [
+      { c: '', t: '  ' }, { c: 'tok-p', t: 'tagTypes' }, { c: '', t: ': [' },
+      { c: 'tok-s', t: '"Missions"' }, { c: '', t: '],' },
+    ] },
+    { parts: [
+      { c: '', t: '  ' }, { c: 'tok-p', t: 'endpoints' }, { c: '', t: ': (build) => ({' },
+    ] },
+    { parts: [
+      { c: '', t: '    ' }, { c: 'tok-p', t: 'listMissions' }, { c: '', t: ': build.' },
+      { c: 'tok-f', t: 'query' }, { c: 'tok-m', t: '<' },
+      { c: 'tok-p', t: 'Mission' }, { c: '', t: '[], ' },
+      { c: 'tok-p', t: 'ListArgs' }, { c: 'tok-m', t: '>({' },
+    ] },
+    { parts: [
+      { c: '', t: '      ' }, { c: 'tok-p', t: 'query' }, { c: '', t: ': ({ ' },
+      { c: 'tok-p', t: 'tenantId' }, { c: '', t: ', ' },
+      { c: 'tok-p', t: 'campaignId' }, { c: '', t: ' }) => ({' },
+    ] },
+    { parts: [
+      { c: '', t: '        ' }, { c: 'tok-p', t: 'url' }, { c: '', t: ': ' },
+      { c: 'tok-s', t: '`/tenants/${tenantId}/campaigns/${campaignId}/missions`' }, { c: '', t: ',' },
+    ] },
+    { parts: [
+      { c: '', t: '        ' }, { c: 'tok-p', t: 'method' }, { c: '', t: ': ' },
+      { c: 'tok-s', t: '"POST"' }, { c: '', t: ',' },
+    ] },
+    { parts: [{ c: '', t: '      }),' }] },
+    { parts: [
+      { c: '', t: '      ' }, { c: 'tok-p', t: 'providesTags' }, { c: '', t: ': [' },
+      { c: 'tok-s', t: '"Missions"' }, { c: '', t: '],' },
+    ] },
+    { parts: [{ c: '', t: '    }),' }] },
+    { parts: [{ c: '', t: '  }),' }] },
+    { parts: [{ c: 'tok-m', t: '});' }] },
+    { parts: [{ c: '', t: '' }] },
+    { parts: [{ c: 'tok-c', t: '// → auto cache · tag invalidation · typed errors' }] },
+  ];
+
+  const [visible, setVisible] = useState(0);
+  useEffect(() => {
+    if (visible >= lines.length) return;
+    const t = setTimeout(() => setVisible(v => v + 1), visible === 0 ? 600 : 220);
+    return () => clearTimeout(t);
+  }, [visible, lines.length]);
+
   return (
-    <section
-      id="home"
-      aria-label="Introduction"
-      className="px-6 pb-16 pt-12 md:pb-24 md:pt-20"
-    >
-      <div className="mx-auto grid max-w-7xl items-center gap-12 lg:grid-cols-2 lg:gap-16">
-        {/* Photo - shows first on mobile */}
-        <div className="order-first flex justify-center lg:order-last">
-          <div className="relative h-72 w-72 overflow-hidden rounded-2xl bg-gradient-to-br from-bg-card to-bg-secondary md:h-96 md:w-80 lg:h-[28rem] lg:w-[22rem]">
-            <Image
-              src="/images/faisal.png"
-              alt="Faisal Aqdas"
-              width={440}
-              height={560}
-              className="h-full w-full object-cover object-top"
-              priority
-            />
-            <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-bg-primary/80 to-transparent" />
-          </div>
-        </div>
-
-        {/* Text content */}
-        <div>
-          <p className="animate-fade-up text-sm text-text-secondary md:text-base">
-            {PERSONAL_INFO.greeting}
-          </p>
-          <p className="animate-fade-up mt-1 text-2xl font-bold text-text-primary md:text-3xl">
-            {PERSONAL_INFO.name}
-          </p>
-          <h1 className="animate-fade-up-delay-1 mt-2 text-4xl font-extrabold text-accent md:text-5xl lg:text-6xl">
-            {PERSONAL_INFO.title}
-          </h1>
-
-          {/* Social icons */}
-          <div className="animate-fade-up-delay-2 mt-6 flex items-center gap-4">
-            {SOCIAL_LINKS.map((social) => {
-              const Icon = SOCIAL_ICON_MAP[social.icon];
-              return Icon ? (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={social.name}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-border text-text-secondary transition-colors hover:border-accent hover:text-accent"
-                >
-                  <Icon className="h-4 w-4" />
-                </a>
-              ) : null;
-            })}
-          </div>
-
-          {/* Buttons */}
-          <div className="animate-fade-up-delay-2 mt-8 flex flex-wrap items-center gap-4">
-            <Button href="#contact">Hire Me</Button>
-            <Button variant="outline" href="/Faisal_Aqdas_Resume.pdf" showDownloadIcon download>
-              Resume
-            </Button>
-          </div>
-
-          {/* Stats */}
-          <div className="animate-fade-up-delay-3 mt-10 flex items-center gap-8 border-t border-border pt-8">
-            {STATS.map((stat) => (
-              <StatItem
-                key={stat.label}
-                value={stat.value}
-                label={stat.label}
-              />
+    <div className="terminal">
+      <div className="terminal-head">
+        <div className="terminal-dots"><span></span><span></span><span></span></div>
+        <div className="terminal-title">~/decommerce — missionsApi.ts</div>
+        <div className="terminal-lang">TS</div>
+      </div>
+      <div className="terminal-body">
+        {lines.slice(0, visible).map((ln, i) => (
+          <div key={i}>
+            {ln.parts.map((p, j) => (
+              <span key={j} className={p.c}>{p.t}</span>
             ))}
           </div>
+        ))}
+        {visible < lines.length && <span className="caret"></span>}
+      </div>
+    </div>
+  );
+}
+
+function LiveVitals() {
+  return (
+    <div className="live-card">
+      <div className="live-cell">
+        <div className="live-label">LCP</div>
+        <div className="live-value">1.6<span className="unit">s</span> <span className="good">●</span></div>
+      </div>
+      <div className="live-cell">
+        <div className="live-label">CLS</div>
+        <div className="live-value">0.02 <span className="good">●</span></div>
+      </div>
+      <div className="live-cell">
+        <div className="live-label">INP</div>
+        <div className="live-value">94<span className="unit">ms</span> <span className="good">●</span></div>
+      </div>
+      <div className="live-cell">
+        <div className="live-label">Lighthouse</div>
+        <div className="live-value">96 <span className="good">●</span></div>
+      </div>
+    </div>
+  );
+}
+
+export default function Hero() {
+  return (
+    <section className="hero container" id="top">
+      <div className="grid-bg"></div>
+      <div className="hero-grid">
+        <div className="reveal shown">
+          <div className="hero-meta">FAISAL AQDAS · SENIOR FRONTEND ENGINEER · FULL-STACK &amp; AI WHEN IT SHIPS FASTER</div>
+          <h1 className="display">
+            <span className="role">I build</span>
+            <span className="name">frontends</span>
+            <span className="role">for <span className="serif-em">enterprise</span>,</span>
+            <span className="role">at <span className="accent">production</span> scale.</span>
+          </h1>
+          <p className="hero-sub">
+            <span className="highlight">8 years</span> shipping React &amp; TypeScript to Mercedes-Benz, Sonova, Thalia, and TBO Clothing —
+            <span className="highlight"> multi-tenant architecture</span>, Core Web Vitals under 2s, cache invalidation that works the first time.
+            When the product demands it, I reach into NestJS and LLM orchestration to close the loop.
+          </p>
+          <div className="hero-cta">
+            <a href="#contact" className="btn btn-primary">
+              <span>Hire me</span>
+              <IconArrow size={14} />
+            </a>
+            <a href="/Faisal_Aqdas_Resume.pdf" download className="btn btn-ghost">
+              <IconDownload size={14} />
+              <span>Résumé</span>
+            </a>
+          </div>
         </div>
+        <div className="hero-right">
+          <TypingCode />
+          <LiveVitals />
+        </div>
+      </div>
+      <div className="scroll-hint">
+        <span>Scroll</span>
+        <span className="line"></span>
       </div>
     </section>
   );

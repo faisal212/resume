@@ -10,11 +10,11 @@ export async function submitContact(
 ): Promise<{ success: boolean; message: string }> {
   const name = formData.get("name") as string;
   const email = formData.get("email") as string;
-  const service = formData.get("service") as string;
+  const role = formData.get("role") as string;
   const budget = formData.get("budget") as string;
-  const details = formData.get("details") as string;
+  const message = formData.get("message") as string;
 
-  if (!name || !email || !details) {
+  if (!name || !email || !message) {
     return { success: false, message: "Please fill in all required fields." };
   }
 
@@ -23,16 +23,16 @@ export async function submitContact(
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: "faisalaqdas@gmail.com",
       replyTo: email,
-      subject: `New inquiry from ${name} — ${service || "General"}`,
+      subject: `New inquiry from ${name} — ${role || "General"}`,
       html: `
         <h2>New Portfolio Contact</h2>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Service:</strong> ${service || "Not specified"}</p>
+        <p><strong>Role type:</strong> ${role || "Not specified"}</p>
         <p><strong>Budget:</strong> ${budget || "Not specified"}</p>
         <hr />
-        <p><strong>Project Details:</strong></p>
-        <p>${details.replace(/\n/g, "<br />")}</p>
+        <p><strong>What they're building:</strong></p>
+        <p>${message.replace(/\n/g, "<br />")}</p>
       `,
     });
     return { success: true, message: "Message sent! I'll get back to you soon." };

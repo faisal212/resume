@@ -1,148 +1,233 @@
 "use client";
 
-import { useActionState } from "react";
-import { submitContact } from "@/app/actions/contact";
-import { SectionHeading } from "./section-heading";
+import { useState, useEffect, useActionState } from 'react';
+import { submitContact } from '@/app/actions/contact';
+import { IconArrow } from '@/app/lib/icons';
 
-export function Contact() {
+export default function Contact() {
   const [state, formAction, isPending] = useActionState(submitContact, null);
+  const [copied, setCopied] = useState(false);
+  const [now, setNow] = useState(new Date());
+
+  useEffect(() => {
+    const t = setInterval(() => setNow(new Date()), 1000);
+    return () => clearInterval(t);
+  }, []);
+
+  const myTime = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', hour12: false
+  }).format(now);
+  const theirTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
+  const theirTime = new Intl.DateTimeFormat('en-GB', {
+    hour: '2-digit', minute: '2-digit', hour12: false
+  }).format(now);
+
+  const hour = parseInt(myTime.slice(0, 2), 10);
+  const working = hour >= 9 && hour < 22;
+
+  const copyEmail = async (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    try {
+      await navigator.clipboard.writeText('faisalaqdas@gmail.com');
+      setCopied(true);
+      setTimeout(() => setCopied(false), 1800);
+    } catch {
+      window.location.href = 'mailto:faisalaqdas@gmail.com';
+    }
+  };
+
+  const sent = state?.success ?? false;
 
   return (
-    <section
-      id="contact"
-      aria-label="Contact me"
-      className="px-6 py-16 md:py-24"
-    >
-      <div className="mx-auto max-w-4xl">
-        <SectionHeading
-          title="Contact me"
-          subtitle="Cultivating Connections: Reach Out And Connect With Me."
-        />
+    <section className="section container reveal" id="contact">
+      <div className="sec-head contact-head">
+        <div className="sec-eyebrow"><span className="num">05 /</span> Let&apos;s talk</div>
+      </div>
 
-        {state?.success ? (
-          <div className="animate-fade-up rounded-2xl border border-accent/30 bg-accent/10 p-8 text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-accent/20">
-              <svg className="h-7 w-7 text-accent" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-            </div>
-            <h3 className="text-xl font-bold text-text-primary">
-              {state.message}
-            </h3>
-            <p className="mt-2 text-sm text-text-secondary">
-              I typically respond within 24 hours.
-            </p>
+      <div className="contact-intro">
+        <h2 className="contact-heading">
+          Send me the hardest<br />frontend problem <span className="serif-em">your team is facing.</span>
+        </h2>
+        <p>
+          I&apos;ll reply within a day with how I&apos;d approach it — paid engagement or not.
+          If it&apos;s a fit for both of us, we go deeper. If it&apos;s not, you&apos;ll still have a second opinion on a hard problem.
+        </p>
+      </div>
+
+      <div className="contact-avail-strip">
+        <div className="avail-cell">
+          <span className="avail-label">Status</span>
+          <span className="avail-value">
+            <span className="dot status-dot-green"></span>
+            Available immediately
+          </span>
+        </div>
+        <div className="avail-cell">
+          <span className="avail-label">My local time · PKT</span>
+          <span className="avail-value mono">
+            {myTime}
+            <span className={`avail-status ${working ? 'on' : 'off'}`}>{working ? '· working' : '· off hours'}</span>
+          </span>
+        </div>
+        <div className="avail-cell">
+          <span className="avail-label">Your local time</span>
+          <span className="avail-value mono">{theirTime} <span className="avail-tz">{theirTZ}</span></span>
+        </div>
+        <div className="avail-cell">
+          <span className="avail-label">Typical response</span>
+          <span className="avail-value">Within 24 hours</span>
+        </div>
+      </div>
+
+      <div className="contact-methods">
+        <a className="contact-method" href="mailto:faisalaqdas@gmail.com" onClick={copyEmail}>
+          <div className="cm-rank">01</div>
+          <div className="cm-body">
+            <div className="cm-kind">Email · preferred</div>
+            <div className="cm-val">faisalaqdas@gmail.com</div>
+            <div className="cm-hint">{copied ? '✓ Copied to clipboard' : 'Click to copy · or mailto'}</div>
           </div>
-        ) : (
-          <form action={formAction} className="group space-y-5">
-            <div className="grid grid-cols-1 gap-5 md:grid-cols-2">
-              <div>
-                <label htmlFor="name" className="sr-only">
-                  Name
-                </label>
-                <input
-                  id="name"
-                  name="name"
-                  type="text"
-                  required
-                  placeholder="Name"
-                  className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:border-accent focus:outline-none"
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="sr-only">
-                  Email
-                </label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  required
-                  placeholder="Email"
-                  className="w-full rounded-lg border border-border bg-bg-card px-4 py-3 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:border-accent focus:outline-none"
-                />
-              </div>
-              <div>
-                <label htmlFor="service" className="sr-only">
-                  Service Of Interest
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  defaultValue=""
-                  className="w-full appearance-none rounded-lg border border-border bg-bg-card px-4 py-3 text-sm text-text-muted transition-colors focus:border-accent focus:outline-none"
-                >
-                  <option value="" disabled>
-                    Service Of Interest
-                  </option>
-                  <option value="frontend">Frontend Development</option>
-                  <option value="fullstack">Full Stack Development</option>
-                  <option value="ai-automation">AI Automation</option>
-                  <option value="saas">SaaS Development</option>
-                  <option value="mobile">Mobile Development</option>
-                  <option value="consulting">Technical Consulting</option>
-                </select>
-              </div>
-              <div>
-                <label htmlFor="budget" className="sr-only">
-                  Budget Range
-                </label>
-                <select
-                  id="budget"
-                  name="budget"
-                  defaultValue=""
-                  className="w-full appearance-none rounded-lg border border-border bg-bg-card px-4 py-3 text-sm text-text-muted transition-colors focus:border-accent focus:outline-none"
-                >
-                  <option value="" disabled>
-                    Budget Range
-                  </option>
-                  <option value="under-1k">Under $1,000</option>
-                  <option value="1k-5k">$1,000 – $5,000</option>
-                  <option value="5k-15k">$5,000 – $15,000</option>
-                  <option value="15k-plus">$15,000+</option>
-                  <option value="discuss">Let&apos;s discuss</option>
-                </select>
-              </div>
-            </div>
+          <span className="cm-arrow">{copied ? '✓' : '↗'}</span>
+        </a>
 
-            <div>
-              <label htmlFor="details" className="sr-only">
-                Project Details
-              </label>
-              <textarea
-                id="details"
-                name="details"
-                required
-                rows={5}
-                placeholder="Tell me about your project..."
-                className="w-full resize-none rounded-lg border border-border bg-bg-card px-4 py-3 text-sm text-text-primary placeholder:text-text-muted transition-colors focus:border-accent focus:outline-none"
-              />
-            </div>
+        <a className="contact-method" href="https://linkedin.com/in/faisalaqdas" target="_blank" rel="noreferrer">
+          <div className="cm-rank">02</div>
+          <div className="cm-body">
+            <div className="cm-kind">LinkedIn · for recruiters</div>
+            <div className="cm-val">linkedin.com/in/faisalaqdas</div>
+            <div className="cm-hint">Roles &amp; intros</div>
+          </div>
+          <span className="cm-arrow">↗</span>
+        </a>
 
-            {state?.success === false && (
-              <p className="text-sm text-red-400">{state.message}</p>
-            )}
+        <a className="contact-method" href="https://github.com/faisal212" target="_blank" rel="noreferrer">
+          <div className="cm-rank">03</div>
+          <div className="cm-body">
+            <div className="cm-kind">GitHub · the code</div>
+            <div className="cm-val">github.com/faisal212</div>
+            <div className="cm-hint">Playground &amp; experiments</div>
+          </div>
+          <span className="cm-arrow">↗</span>
+        </a>
+      </div>
 
-            <div className="flex justify-end">
-              <button
-                type="submit"
-                disabled={isPending}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-semibold text-white transition-colors hover:bg-accent-hover focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-bg-primary disabled:opacity-50 group-invalid:pointer-events-none group-invalid:opacity-40"
-              >
-                {isPending ? (
-                  <>
-                    <svg className="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                      <path d="M21 12a9 9 0 1 1-6.219-8.56" strokeLinecap="round" />
-                    </svg>
-                    Sending...
-                  </>
-                ) : (
-                  "Send"
-                )}
-              </button>
-            </div>
-          </form>
+      <div className="contact-fit">
+        <div className="fit-col fit-yes">
+          <div className="fit-head">
+            <span className="fit-mark">✓</span>
+            <span>Best fit</span>
+          </div>
+          <ul>
+            <li>Senior / Staff Frontend roles</li>
+            <li>React · Next.js · TypeScript at production scale</li>
+            <li>Design system &amp; multi-tenant architecture</li>
+            <li>AI-frontend — LLMs embedded in real UI, not chat widgets</li>
+            <li>Performance rescues — Core Web Vitals under 2s</li>
+            <li>Remote · async · European time overlap</li>
+          </ul>
+        </div>
+        <div className="fit-col fit-no">
+          <div className="fit-head">
+            <span className="fit-mark">×</span>
+            <span>Not a fit</span>
+          </div>
+          <ul>
+            <li>Junior or mid-level roles</li>
+            <li>WordPress / pure templating work</li>
+            <li>Crypto, web3, gambling, adtech</li>
+            <li>Unpaid trials or spec work</li>
+            <li>On-site only · no remote option</li>
+            <li>Agency-style body-shopping contracts</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="contact-week">
+        <div className="week-head">
+          <span className="week-eyebrow">If we move forward · the first week</span>
+          <span className="week-sub">No mystery, no ghosting.</span>
+        </div>
+        <div className="week-steps">
+          <div className="week-step">
+            <div className="ws-day">Day 0–1</div>
+            <div className="ws-title">I reply</div>
+            <div className="ws-body">With a take on your problem and a link to a 30-min intro slot.</div>
+          </div>
+          <div className="week-step">
+            <div className="ws-day">Day 2–3</div>
+            <div className="ws-title">Intro call</div>
+            <div className="ws-body">Your stack, team, and hardest constraint. Short, sharp, no sales-y anything.</div>
+          </div>
+          <div className="week-step">
+            <div className="ws-day">Day 4–7</div>
+            <div className="ws-title">Trial or scoped engagement</div>
+            <div className="ws-body">A paid day-rate pilot, architecture review, or straight offer — whatever fits your process.</div>
+          </div>
+        </div>
+      </div>
+
+      <div className="contact-form-wrap">
+        <div className="cf-head">
+          <div>
+            <div className="cf-eyebrow">Prefer a form?</div>
+            <div className="cf-sub">Same 24-hour reply. Use whichever is easier for you.</div>
+          </div>
+        </div>
+        {state && !state.success && (
+          <p className="contact-error">{state.message}</p>
         )}
+        <form className="contact-form" action={formAction}>
+          <div className="form-grid">
+            <div className="form-row">
+              <label>Name</label>
+              <input type="text" name="name" placeholder="Your full name" required />
+            </div>
+            <div className="form-row">
+              <label>Email</label>
+              <input type="email" name="email" placeholder="you@company.com" required />
+            </div>
+          </div>
+          <div className="form-grid">
+            <div className="form-row">
+              <label>Role type</label>
+              <select name="role">
+                <option>Senior Frontend Engineer</option>
+                <option>Tech Lead / Staff FE</option>
+                <option>Contract / Consulting</option>
+                <option>Architecture review</option>
+              </select>
+            </div>
+            <div className="form-row">
+              <label>Budget / rate (optional)</label>
+              <input type="text" name="budget" placeholder="$ / month or project" />
+            </div>
+          </div>
+          <div className="form-row">
+            <label>What are you building?</label>
+            <textarea name="message" placeholder="Stack, team size, timeline, the hardest problem you're solving…" required></textarea>
+          </div>
+          <button
+            type="submit"
+            className="btn btn-primary contact-submit"
+            disabled={sent || isPending}
+          >
+            {sent
+              ? "Message sent ✓ — I'll reply within 24 hours"
+              : isPending
+              ? 'Sending…'
+              : 'Send message'}
+            {!sent && !isPending && <IconArrow size={14} />}
+          </button>
+        </form>
+      </div>
+
+      <div className="contact-sign">
+        <div className="sign-lead">Still here?</div>
+        <div className="sign-body">
+          Send the email. Say what you&apos;re building, who&apos;s on the team, and the one thing that&apos;s blocking you this quarter.
+          I&apos;ll read it properly, reply within a day, and either help or point you to someone who can.
+        </div>
+        <div className="sign-mark">— faisal</div>
       </div>
     </section>
   );
