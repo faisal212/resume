@@ -47,6 +47,10 @@ next-env.d.ts
 test-results/
 playwright-report/
 playwright/.cache/
-*.png
-*.jpg
-*.jpeg
+desktop-full.jpeg
+mobile-full.jpeg
+tbo-gauges*.jpeg
+s[0-9]*.jpeg
+m[0-9]*.jpeg
+fixed-logos.jpeg
+lighthouse-report.json
