@@ -212,7 +212,7 @@ export default function Contact() {
             disabled={sent || isPending}
           >
             {sent
-              ? "Message sent ✓ — I'll reply within 24 hours"
+              ? "Sent ✓ — reply within 24h"
               : isPending
               ? 'Sending…'
               : 'Send message'}
