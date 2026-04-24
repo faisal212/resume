@@ -103,12 +103,12 @@ export const CASES: Case[] = [
     title: 'AI-powered growth platform',
     tagline: 'Full-stack SaaS — multi-tenant white-label',
     role: 'Full Stack Lead · Architecture + Shipping',
-    desc: 'White-label SaaS for enterprise clients across Europe. Architected Next.js frontend, multi-tenant infrastructure, gamified growth engine, AI-powered page builder, Visual Micro-Apps, and AI call automation via Vapi + n8n.',
+    desc: 'White-label SaaS for enterprise clients across Europe. Architected the Next.js frontend, the multi-tenant theming layer, a gamified growth engine, and an AI-assisted page builder that lets non-technical editors ship branded campaign pages in minutes.',
     tags: ['Next.js', 'Node.js', 'PostgreSQL', 'Redis', 'BullMQ', 'Claude API', 'OpenAI'],
     wins: [
-      { v: '87%', l: 'Cut content production time with AI pipelines' },
+      { v: '87%', l: 'Cut content production time with AI-assisted authoring' },
       { v: '9 → 0', l: 'Production incidents / quarter' },
-      { v: '600+', l: 'Automated AI calls per month at scale' },
+      { v: '27+', l: 'Enterprise tenants live on the platform' },
     ],
     hardPart: {
       title: 'The hard part — cache granularity at tenant × campaign',

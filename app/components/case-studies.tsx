@@ -170,7 +170,7 @@ function CaseVisual({ c }: { c: Case }) {
               <div style={{ padding: 14, border: '1px solid var(--rule)', borderRadius: 10, background: 'var(--bg)', display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-3)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>AI pipeline · BullMQ workers</div>
                 {[
-                  { id: 'vapi.call.0xA7', s: 'processing', c: '#ff6b1a' },
+                  { id: 'claude.page.0xA7', s: 'processing', c: '#ff6b1a' },
                   { id: 'claude.seo.0x42', s: 'done', c: '#6dbf6d' },
                   { id: 'openai.img.0x91', s: 'queued', c: '#888' },
                 ].map(j => (
