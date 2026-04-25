@@ -528,6 +528,17 @@ img { max-width: 100%; display: block; }
   text-transform: uppercase;
 }
 
+/* ---- case study shared atoms ---- */
+.cs-label { font-family: var(--mono); font-size: 10px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.12em; }
+.cs-label-sm { font-family: var(--mono); font-size: 9px; color: var(--ink-3); text-transform: uppercase; letter-spacing: 0.1em; }
+.cs-frame-col { flex: 1; display: flex; flex-direction: column; gap: 14px; }
+.cs-card { border: 1px solid var(--rule); border-radius: 10px; background: var(--bg); display: flex; flex-direction: column; padding: 14px; }
+.cs-card-lg { border: 1px solid var(--rule); border-radius: 12px; background: var(--bg); display: flex; flex-direction: column; padding: 16px; }
+.cs-gauge-cell { padding: 14px 10px 12px; border: 1px solid var(--rule); border-radius: 10px; background: var(--bg); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.cs-gauge-val { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink-1); }
+.cs-gauge-label { font-family: var(--mono); font-size: 9px; letter-spacing: 0.14em; color: var(--ink-2); }
+.cs-gauge-was { font-family: var(--mono); font-size: 9px; color: var(--ink-3); }
+
 /* ---- experience timeline ---- */
 .timeline { display: flex; flex-direction: column; border-left: 1px solid var(--rule); padding-left: 32px; max-width: 900px; }
 .tl-item {

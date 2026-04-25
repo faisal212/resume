@@ -52,8 +52,8 @@ function CaseVisual({ c }: { c: Case }) {
             </div>
           </div>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <div style={{ border: '1px solid var(--rule)', borderRadius: 12, padding: 16, background: 'var(--bg)', display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-3)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Shared design tokens</div>
+            <div className="cs-card-lg" style={{ gap: 12 }}>
+              <div className="cs-label">Shared design tokens</div>
               <div className="cs-grid-5" style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 6 }}>
                 {['#bd995b','#d4b57a','#eadbbb','#17171a','#ffffff'].map(hex=>(
                   <div key={hex} style={{ height: 32, background: hex, borderRadius: 6, border: '1px solid var(--rule)' }}></div>
@@ -65,8 +65,8 @@ function CaseVisual({ c }: { c: Case }) {
                 <div><span style={{ color: 'var(--ink-3)' }}>type/</span>xs sm base lg xl 2xl</div>
               </div>
             </div>
-            <div style={{ border: '1px solid var(--rule)', borderRadius: 12, padding: 16, background: 'var(--bg)', display: 'flex', flexDirection: 'column', gap: 10, flex: 1 }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-3)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Architecture notes</div>
+            <div className="cs-card-lg" style={{ gap: 10, flex: 1 }}>
+              <div className="cs-label">Architecture notes</div>
               <div style={{ fontFamily: 'var(--mono)', fontSize: 11, color: 'var(--ink-1)', lineHeight: 1.75 }}>
                 <div><span style={{ color: 'var(--accent)' }}>→</span> Feed: virtualized list · 60fps scroll</div>
                 <div><span style={{ color: 'var(--accent)' }}>→</span> Shop: image-first, LCP &lt; 1.8s</div>
@@ -105,30 +105,30 @@ function CaseVisual({ c }: { c: Case }) {
           <span>PERFORMANCE AUDIT · BEFORE → AFTER</span>
           <span>4-WEEK ENGAGEMENT · 2023</span>
         </div>
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div className="cs-frame-col">
           <div className="cs-gauges" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
             {gauges.map(g => {
               const r = 28;
               const circ = 2 * Math.PI * r;
               const off = circ - (g.v / 100) * circ;
               return (
-                <div key={g.l} style={{ padding: '14px 10px 12px', border: '1px solid var(--rule)', borderRadius: 10, background: 'var(--bg)', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}>
+                <div key={g.l} className="cs-gauge-cell">
                   <div style={{ position: 'relative', width: 64, height: 64 }}>
                     <svg width="64" height="64" viewBox="0 0 64 64" style={{ transform: 'rotate(-90deg)' }}>
                       <circle cx="32" cy="32" r={r} fill="none" stroke="var(--rule)" strokeWidth="4" />
                       <circle cx="32" cy="32" r={r} fill="none" stroke="var(--accent)" strokeWidth="4"
                         strokeDasharray={circ} strokeDashoffset={off} strokeLinecap="round" />
                     </svg>
-                    <div style={{ position: 'absolute', inset: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 16, fontWeight: 600, letterSpacing: '-0.02em', color: 'var(--ink-1)' }}>{g.v}</div>
+                    <div className="cs-gauge-val">{g.v}</div>
                   </div>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: 9, letterSpacing: '0.14em', color: 'var(--ink-2)' }}>{g.l}</div>
-                  <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--ink-3)' }}>was {g.was}</div>
+                  <div className="cs-gauge-label">{g.l}</div>
+                  <div className="cs-gauge-was">was {g.was}</div>
                 </div>
               );
             })}
           </div>
-          <div style={{ padding: 14, border: '1px solid var(--rule)', borderRadius: 10, background: 'var(--bg)', display: 'flex', flexDirection: 'column', gap: 10 }}>
-            <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-3)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Critical path · first 1.8s</div>
+          <div className="cs-card" style={{ gap: 10 }}>
+            <div className="cs-label">Critical path · first 1.8s</div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 5 }}>
               {bars.map(b => (
                 <div key={b.k} style={{ display: 'grid', gridTemplateColumns: '110px 1fr', gap: 8, alignItems: 'center' }}>
@@ -156,7 +156,7 @@ function CaseVisual({ c }: { c: Case }) {
           <span>DASHBOARD · MULTI-TENANT</span>
           <span>decommerce.com / growth-engine</span>
         </div>
-        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14 }}>
+        <div className="cs-frame-col">
           <div style={{ position: 'relative', borderRadius: 10, overflow: 'hidden', border: '1px solid var(--rule)', background: '#ffffff', flex: 1, minHeight: 240 }}>
             <Image src="/assets/growth-dashboard.png" alt="Growth Engine admin — Digital Transformation campaign" fill sizes="(max-width: 768px) 100vw, 600px" style={{ objectFit: 'cover', objectPosition: 'top left' }} />
             <div style={{ position: 'absolute', top: 12, right: 12, padding: '4px 10px', borderRadius: 999, background: 'rgba(10,10,11,0.85)', color: 'var(--accent)', fontFamily: 'var(--mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', backdropFilter: 'blur(6px)' }}>Admin · enterprise</div>
@@ -167,8 +167,8 @@ function CaseVisual({ c }: { c: Case }) {
               <div style={{ position: 'absolute', bottom: 10, left: 10, fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--ink-1)', background: 'rgba(10,10,11,0.8)', padding: '4px 8px', borderRadius: 4, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Client · Mercedes-Benz</div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-              <div style={{ padding: 14, border: '1px solid var(--rule)', borderRadius: 10, background: 'var(--bg)', display: 'flex', flexDirection: 'column', gap: 8 }}>
-                <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-3)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>AI pipeline · BullMQ workers</div>
+              <div className="cs-card" style={{ gap: 8 }}>
+                <div className="cs-label">AI pipeline · BullMQ workers</div>
                 {[
                   { id: 'claude.page.0xA7', s: 'processing', c: '#ff6b1a' },
                   { id: 'claude.seo.0x42', s: 'done', c: '#6dbf6d' },
@@ -183,7 +183,7 @@ function CaseVisual({ c }: { c: Case }) {
               <div className="cs-grid-3" style={{ padding: 14, border: '1px solid var(--rule)', borderRadius: 10, background: 'var(--bg)', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8 }}>
                 {[{ l: 'Tenants', v: '27+' }, { l: 'AI runs/day', v: '12.4k' }, { l: 'Saved', v: '87%' }].map(k => (
                   <div key={k.l}>
-                    <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--ink-3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{k.l}</div>
+                    <div className="cs-label-sm">{k.l}</div>
                     <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.02em', marginTop: 2 }}>{k.v}</div>
                   </div>
                 ))}
@@ -215,7 +215,7 @@ function CaseVisual({ c }: { c: Case }) {
         <span>AI ONBOARDING AGENT · IN PRODUCTION</span>
         <span>dev-admin.decommerce.com</span>
       </div>
-      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14 }}>
+      <div className="cs-frame-col">
         <div style={{ position: 'relative', borderRadius: 10, overflow: 'hidden', border: '1px solid var(--rule)', background: '#f7f6f2', aspectRatio: '16 / 9', minHeight: 260 }}>
           {klaireShots.map((s, i) => (
             <Image
@@ -262,7 +262,7 @@ function CaseVisual({ c }: { c: Case }) {
             { l: 'Devs needed', v: '0', s: 'per onboarding' },
           ].map((k, i) => (
             <div key={k.l} style={{ padding: '4px 10px', borderLeft: i === 0 ? 'none' : '1px solid var(--rule)' }}>
-              <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--ink-3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{k.l}</div>
+              <div className="cs-label-sm">{k.l}</div>
               <div style={{ fontSize: 18, fontWeight: 600, letterSpacing: '-0.02em', marginTop: 2, color: i === 1 ? 'var(--accent)' : 'var(--ink-1)' }}>{k.v}</div>
               <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--ink-3)', marginTop: 1 }}>{k.s}</div>
             </div>
