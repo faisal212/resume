@@ -286,7 +286,7 @@ export default function CaseStudies() {
       </div>
       {CASES.map(c => (
         <article className="case" key={c.name}>
-          <div className="case-meta">
+          <div className="case-meta reveal">
             <div className="case-idx">{c.idx} / {String(CASES.length).padStart(2, '0')} — {c.name}</div>
             <h3 className="case-title">{c.title.split(' ').slice(0, -1).join(' ')} <span className="serif-em">{c.title.split(' ').slice(-1)}</span></h3>
             <div className="case-role">{c.role}</div>
@@ -309,7 +309,7 @@ export default function CaseStudies() {
               </div>
             )}
           </div>
-          <div className="case-visual">
+          <div className="case-visual reveal">
             <CaseVisual c={c} />
           </div>
         </article>
