@@ -899,13 +899,11 @@ body.reduce-motion * { animation-duration: 0s !important; transition-duration: 0
   .case-frame-head { font-size: 9px; flex-wrap: wrap; gap: 6px; }
   .case-hard { padding: 14px; margin-top: 18px; }
   .case-hard-body { font-size: 13px; }
-  .case-visual [style*="grid-template-columns:0.85fr 1fr"],
-  .case-visual [style*="grid-template-columns:1fr 1.2fr"],
-  .case-visual [style*="grid-template-columns:1fr 1fr"] { grid-template-columns: 1fr !important; gap: 12px !important; }
   .case-visual img { max-height: 320px !important; }
-  .case-visual [style*="grid-template-columns:repeat(4"] { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
-  .case-visual [style*="grid-template-columns:repeat(5"] { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
-  .case-visual [style*="grid-template-columns:repeat(3"] { gap: 6px !important; }
+  .cs-grid-split { grid-template-columns: 1fr !important; gap: 12px !important; }
+  .cs-gauges { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .cs-grid-5 { grid-template-columns: repeat(2, 1fr) !important; gap: 8px !important; }
+  .cs-grid-3 { gap: 6px !important; }
   .tm-card { padding: 22px; }
   .tm-quote { font-size: 16px; }
   .exp-cell { padding: 28px 20px; }

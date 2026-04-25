@@ -15,7 +15,7 @@ function CaseVisual({ c }: { c: Case }) {
           <span>LIVE · PRODUCTION</span>
           <span>spear.app / feed</span>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: '0.85fr 1fr', gap: 18, flex: 1 }}>
+        <div className="cs-grid-split" style={{ display: 'grid', gridTemplateColumns: '0.85fr 1fr', gap: 18, flex: 1 }}>
           <div style={{
             position: 'relative',
             display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -54,7 +54,7 @@ function CaseVisual({ c }: { c: Case }) {
           <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
             <div style={{ border: '1px solid var(--rule)', borderRadius: 12, padding: 16, background: 'var(--bg)', display: 'flex', flexDirection: 'column', gap: 12 }}>
               <div style={{ fontFamily: 'var(--mono)', fontSize: 10, color: 'var(--ink-3)', textTransform: 'uppercase', letterSpacing: '0.12em' }}>Shared design tokens</div>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 6 }}>
+              <div className="cs-grid-5" style={{ display: 'grid', gridTemplateColumns: 'repeat(5,1fr)', gap: 6 }}>
                 {['#bd995b','#d4b57a','#eadbbb','#17171a','#ffffff'].map(hex=>(
                   <div key={hex} style={{ height: 32, background: hex, borderRadius: 6, border: '1px solid var(--rule)' }}></div>
                 ))}
@@ -106,7 +106,7 @@ function CaseVisual({ c }: { c: Case }) {
           <span>4-WEEK ENGAGEMENT · 2023</span>
         </div>
         <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 14 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
+          <div className="cs-gauges" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10 }}>
             {gauges.map(g => {
               const r = 28;
               const circ = 2 * Math.PI * r;
@@ -161,7 +161,7 @@ function CaseVisual({ c }: { c: Case }) {
             <Image src="/assets/growth-dashboard.png" alt="Growth Engine admin — Digital Transformation campaign" fill sizes="(max-width: 768px) 100vw, 600px" style={{ objectFit: 'cover', objectPosition: 'top left' }} />
             <div style={{ position: 'absolute', top: 12, right: 12, padding: '4px 10px', borderRadius: 999, background: 'rgba(10,10,11,0.85)', color: 'var(--accent)', fontFamily: 'var(--mono)', fontSize: 9, letterSpacing: '0.12em', textTransform: 'uppercase', backdropFilter: 'blur(6px)' }}>Admin · enterprise</div>
           </div>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 14, minHeight: 220 }}>
+          <div className="cs-grid-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: 14, minHeight: 220 }}>
             <div style={{ position: 'relative', borderRadius: 10, overflow: 'hidden', border: '1px solid var(--rule)', background: 'linear-gradient(135deg, #0d0d10, #17171a)' }}>
               <Image src="/assets/growth-mercedes.png" alt="Mercedes-Benz Digital Transformation — mobile experience" fill sizes="(max-width: 768px) 100vw, 400px" style={{ objectFit: 'cover' }} />
               <div style={{ position: 'absolute', bottom: 10, left: 10, fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--ink-1)', background: 'rgba(10,10,11,0.8)', padding: '4px 8px', borderRadius: 4, letterSpacing: '0.08em', textTransform: 'uppercase' }}>Client · Mercedes-Benz</div>
@@ -180,7 +180,7 @@ function CaseVisual({ c }: { c: Case }) {
                   </div>
                 ))}
               </div>
-              <div style={{ padding: 14, border: '1px solid var(--rule)', borderRadius: 10, background: 'var(--bg)', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8 }}>
+              <div className="cs-grid-3" style={{ padding: 14, border: '1px solid var(--rule)', borderRadius: 10, background: 'var(--bg)', display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 8 }}>
                 {[{ l: 'Tenants', v: '27+' }, { l: 'AI runs/day', v: '12.4k' }, { l: 'Saved', v: '87%' }].map(k => (
                   <div key={k.l}>
                     <div style={{ fontFamily: 'var(--mono)', fontSize: 9, color: 'var(--ink-3)', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{k.l}</div>
@@ -241,7 +241,7 @@ function CaseVisual({ c }: { c: Case }) {
             ))}
           </div>
         </div>
-        <div style={{ padding: 14, border: '1px solid var(--rule)', borderRadius: 10, background: 'var(--bg)', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6, alignItems: 'stretch' }}>
+        <div className="cs-grid-5" style={{ padding: 14, border: '1px solid var(--rule)', borderRadius: 10, background: 'var(--bg)', display: 'grid', gridTemplateColumns: 'repeat(5, 1fr)', gap: 6, alignItems: 'stretch' }}>
           {[
             { n: 'URL', c: 'var(--ink-1)' },
             { n: 'Puppeteer', c: '#6dbf6d' },
@@ -255,7 +255,7 @@ function CaseVisual({ c }: { c: Case }) {
             </div>
           ))}
         </div>
-        <div style={{ padding: 12, border: '1px solid var(--rule)', borderRadius: 10, background: 'linear-gradient(90deg, rgba(255,107,26,0.06), transparent)', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
+        <div className="cs-grid-3" style={{ padding: 12, border: '1px solid var(--rule)', borderRadius: 10, background: 'linear-gradient(90deg, rgba(255,107,26,0.06), transparent)', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 8 }}>
           {[
             { l: 'Before', v: '1 week', s: 'manual setup' },
             { l: 'After', v: '20 min', s: 'client self-serve' },
