@@ -7,22 +7,23 @@ import { IconArrow } from '@/app/lib/icons';
 export default function Contact() {
   const [state, formAction, isPending] = useActionState(submitContact, null);
   const [copied, setCopied] = useState(false);
-  const [now, setNow] = useState(new Date());
+  const [now, setNow] = useState<Date | null>(null);
 
   useEffect(() => {
+    setNow(new Date());
     const t = setInterval(() => setNow(new Date()), 1000);
     return () => clearInterval(t);
   }, []);
 
-  const myTime = new Intl.DateTimeFormat('en-GB', {
+  const myTime = now ? new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Asia/Karachi', hour: '2-digit', minute: '2-digit', hour12: false
-  }).format(now);
-  const theirTZ = Intl.DateTimeFormat().resolvedOptions().timeZone;
-  const theirTime = new Intl.DateTimeFormat('en-GB', {
+  }).format(now) : '--:--';
+  const theirTZ = now ? Intl.DateTimeFormat().resolvedOptions().timeZone : '';
+  const theirTime = now ? new Intl.DateTimeFormat('en-GB', {
     hour: '2-digit', minute: '2-digit', hour12: false
-  }).format(now);
+  }).format(now) : '--:--';
 
-  const hour = parseInt(myTime.slice(0, 2), 10);
+  const hour = now ? parseInt(myTime.slice(0, 2), 10) : -1;
   const working = hour >= 9 && hour < 22;
 
   const copyEmail = async (e: React.MouseEvent<HTMLAnchorElement>) => {
