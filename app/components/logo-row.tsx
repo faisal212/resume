@@ -20,7 +20,7 @@ function LogoMark({ l }: { l: Logo }) {
   if (l.kind === 'img' && l.img) {
     return (
       <div className="lg-mark" aria-hidden="true">
-        <Image src={l.img} alt={l.name} width={72} height={24} unoptimized />
+        <Image src={l.img} alt={l.name} width={0} height={0} sizes="120px" unoptimized style={{ height: '28px', width: 'auto', maxWidth: '120px' }} />
       </div>
     );
   }
