@@ -11,7 +11,7 @@ export function useReveal(): void {
           io.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12 });
+    }, { threshold: 0 });
     els.forEach(el => io.observe(el));
     return () => io.disconnect();
   });
