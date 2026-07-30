@@ -126,7 +126,8 @@ export default function Hero() {
             <span className="role">at <span className="accent">production</span> scale.</span>
           </h1>
           <p className="hero-sub">
-            <span className="highlight">10 years</span> shipping React &amp; TypeScript to Mercedes-Benz, Sonova, Thalia, and TBO Clothing —
+            <span className="highlight">10 years</span>{' '}
+            shipping React &amp; TypeScript to Mercedes-Benz, Sonova, Thalia, and TBO Clothing —
             <span className="highlight"> multi-tenant architecture</span>, Core Web Vitals under 2s, cache invalidation that works the first time.
             When the product demands it, I reach into NestJS and LLM orchestration to close the loop.
           </p>
