@@ -12,7 +12,7 @@ export default function Experience() {
           <div className="sec-eyebrow"><span className="num">03 /</span> Career</div>
         </div>
         <h2 className="sec-title">
-          8 years of <span className="serif-em">shipping</span> — and rewriting it better.
+          10 years of <span className="serif-em">shipping</span> — and rewriting it better.
         </h2>
       </div>
       <div className="timeline">

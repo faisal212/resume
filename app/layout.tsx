@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://www.faisalaqdas.com'),
   title: "Faisal Aqdas — Senior Frontend Engineer",
   description:
-    "Senior Frontend Engineer with 8 years shipping React & TypeScript to Mercedes-Benz, Sonova, Thalia, and TBO Clothing. Multi-tenant architecture, Core Web Vitals under 2s, LLM-embedded AI features.",
+    "Senior Frontend Engineer with 10 years shipping React & TypeScript to Mercedes-Benz, Sonova, Thalia, and TBO Clothing. Multi-tenant architecture, Core Web Vitals under 2s, LLM-embedded AI features.",
   keywords: [
     "Senior Frontend Engineer",
     "React",
@@ -47,7 +47,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Faisal Aqdas — Senior Frontend Engineer",
     description:
-      "8 years shipping React & TypeScript to enterprise clients. Multi-tenant architecture, Core Web Vitals under 2s.",
+      "10 years shipping React & TypeScript to enterprise clients. Multi-tenant architecture, Core Web Vitals under 2s.",
     url: 'https://www.faisalaqdas.com',
     siteName: 'Faisal Aqdas',
     type: "website",
@@ -65,7 +65,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Faisal Aqdas — Senior Frontend Engineer",
     description:
-      "8 years shipping React & TypeScript to enterprise clients. Multi-tenant architecture, Core Web Vitals under 2s.",
+      "10 years shipping React & TypeScript to enterprise clients. Multi-tenant architecture, Core Web Vitals under 2s.",
     images: ['/assets/faisal-hero.jpg'],
   },
 };

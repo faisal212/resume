@@ -21,7 +21,7 @@ export const NAV_SECTIONS: NavSection[] = [
 ];
 
 export const METRICS: Metric[] = [
-  { val: 8, suf: 'yrs', label: 'Production React & TypeScript' },
+  { val: 10, suf: 'yrs', label: 'Production React & TypeScript' },
   { val: 92, suf: '+', label: 'Lighthouse across Perf / A11y / Best Practices' },
   { val: 87, suf: '%', label: 'Content production time reduction — AI automation' },
   { val: 20, suf: '+', label: 'Enterprise projects shipped to production' },
@@ -199,31 +199,45 @@ export const NOTES: Note[] = [
 
 export const ROLES: Role[] = [
   {
-    role: 'Senior Frontend Engineer — Full Stack & AI',
-    company: 'Decommerce',
-    when: '2022 — Present',
-    body: "Lead the frontend of a white-label B2B SaaS community platform shipped to enterprise clients across Europe — Mercedes-Benz, Sonova, Thalia, TBO Clothing. Built the multi-tenant design system: tokenised brand config per tenant, a Storybook-driven component library, and a theming engine that lets a new brand ship in hours. Architected the Next.js frontend with per-tenant × per-campaign server caching, feed/shop/rewards flows at sub-2s cold load, and the white-labelling layer. Built the operator UI for the AI Page Builder (Claude/GPT-4o), the authoring surface for Visual Micro-Apps, and the dashboards for the outbound AI-call automation. Reached into NestJS, BullMQ, and the cache invalidation layer whenever the frontend needed the backend to move with it. Cut content production time by 87%; drove production incidents from 9/quarter to zero.",
-    stack: ['Next.js', 'React', 'TypeScript', 'Storybook', 'RTK Query', 'NestJS', 'Redis', 'BullMQ', 'Claude', 'GPT-4o'],
+    role: 'Independent Full Stack Engineer — Contract & Product',
+    company: 'Self-employed',
+    when: 'Apr 2026 — Present',
+    body: "Built refine.pk, a full e-commerce store — listings, cart, checkout, auth, admin — scoring a perfect 100 Lighthouse across Performance, Accessibility, Best Practices, and SEO on desktop, and 99 on mobile under slow 4G throttling, with zero layout shift. Building an early-stage SaaS as co-founder and sole engineer: a website and lead-tracking platform for local service businesses that shows them which marketing channel actually brings paying customers. Built it from zero — multi-tenant architecture, block-based site editor, form builder, teams and roles, Stripe billing, and a tracking system spanning short links, attribution, and Meta/TikTok server-side conversion events.",
+    stack: ['Next.js', 'TypeScript', 'Stripe', 'Multi-tenant', 'Meta/TikTok CAPI'],
   },
   {
-    role: 'Senior React Developer',
+    role: 'Senior Frontend Engineer — Full-Stack & AI Orchestration',
+    company: 'Decommerce',
+    when: '2022 — 2026',
+    body: "Led the frontend of a white-label, multi-tenant B2B SaaS community platform shipped to enterprise clients across Europe — Mercedes-Benz, Sonova, Thalia, TBO Clothing. Built the multi-tenant design system that drives every tenant surface from one set of brand tokens: zero duplicated code per tenant, per-client setup time down 60%. Delivered four production Next.js apps (SSR + PWA) with sub-2s cold load on 4G and Lighthouse 92+ across Performance, Accessibility, and Best Practices — cache keyed at tenant:campaign so editors see changes instantly while every other surface keeps rendering from cache. Architected Klaire, an AI onboarding agent (NestJS, Next.js, Langbase, GPT-4o, Puppeteer) that collapsed enterprise campaign setup from one week to under 20 minutes, with zero developer hours per new client. Built a B2B outbound automation pipeline in n8n (Apollo, Claude, PhantomBuster, GPT-4o, Vapi) running 6,316 executions/week on self-hosted GCP.",
+    stack: ['Next.js', 'React', 'TypeScript', 'Storybook', 'NestJS', 'Langbase', 'GPT-4o', 'n8n', 'GCP'],
+  },
+  {
+    role: 'Senior React / Next.js Engineer — Performance & Architecture',
     company: 'ComOn Enterprise LLC',
     when: '2021 — 2022',
-    body: 'Overhauled a React codebase scoring under 50 on Lighthouse, applying performance optimisation, code-splitting, and rendering fixes to push scores to 92+. Led architecture migration to a headless ecommerce stack with Gatsby.js, delivering sub-second page loads. Established a shared Storybook component library, eliminating duplicate UI across three teams and cutting design-to-code turnaround from days to hours.',
+    body: 'Overhauled a React codebase scoring under 50 on Lighthouse — performance optimisation, code-splitting, and rendering fixes pushed scores to 92+, turning a sluggish product into a fast, accessible app. Led the architecture migration to a headless Shopify storefront on Gatsby — SSG + SSR delivering sub-second page loads across the store. Established a shared 35+ component Storybook library with strict design tokens that eliminated duplicate UI code across 3 teams and cut design-to-code handoff from days to hours.',
     stack: ['React', 'Gatsby', 'Storybook', 'GraphQL', 'TypeScript'],
   },
   {
-    role: 'Frontend Lead — React Native & AR',
+    role: 'Frontend Engineer & Team Lead — React Native & AR',
     company: 'Smart Reality',
     when: '2018 — 2020',
-    body: 'Led a 5-engineer team to ship an AR educational mobile app from zero to launch in 11 months, reaching 1,000+ downloads with a 4.2-star rating. Architected the React Native shell that embedded Unity 3D AR containers — the bridge layer, state sync, and the frontend patterns that let a non-native team ship a native-feeling product.',
+    body: 'Led 5 engineers to ship a React Native + Unity 3D AR education app in 11 months — 1,000+ downloads, 4.2 rating, and under 80ms AR frame latency on mid-range Android.',
     stack: ['React Native', 'Unity 3D', 'Node.js', 'MongoDB'],
+  },
+  {
+    role: 'Freelance Web Developer',
+    company: 'Self-employed',
+    when: '2020 — 2021',
+    body: 'Built and maintained websites for local retail and service businesses in Lahore — working directly with owners on scope, design, and delivery.',
+    stack: ['HTML', 'CSS', 'JavaScript', 'WordPress'],
   },
   {
     role: 'Frontend Developer',
     company: 'AcroEx',
     when: '2016 — 2018',
-    body: 'Shipped 11 commercial HTML/CSS/WordPress templates on ThemeForest, each generating 100 – 1,000+ sales — establishing a foundation in responsive, cross-browser frontend development at scale.',
+    body: 'Shipped 11 ThemeForest templates generating 10,000+ cumulative sales (top 5% of sellers). Built responsive UIs across 8+ client projects, cutting QA bugs by 30%.',
     stack: ['HTML', 'CSS', 'JavaScript', 'WordPress', 'PHP'],
   },
 ];
